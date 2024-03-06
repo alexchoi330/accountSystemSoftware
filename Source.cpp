@@ -18,6 +18,7 @@ void forgotPass();
 void logout();
 void viewAccounts();
 void setAdmin();
+void resetPass();
 
 int main() {
 	int c;//c for choice
@@ -32,9 +33,18 @@ int main() {
 	std::cout << "\t| Press 5 to EXIT                                                 |" << std::endl;
 	std::cout << "\t| Press 6 to View all the accounts (for admin)                    |" << std::endl;
 	std::cout << "\t| Press 7 to Set the Admin account                                |" << std::endl;
+	std::cout << "\t| Press 8 to reset your password                                  |" << std::endl;
+
 	std::cout << "\n\tPlease enter your choice: " << std::endl;
+	//std::vector<int> choices;
+	//= { 1, 2, 3, 4, 5, 6, 7, 8 };
 	std::cin >> c;
-	std::cout << std::endl;
+	//(std::find(choices.begin(), choices.end(), my_var) != my_list.end())
+	//if (!(c std::find choices) {
+	//	std::cout << "Please enter a valid digit" << std::endl;
+	//	main();
+	//} // add a guard for entering anythign other than 1-8. 
+	//std::cout << std::endl;
 	switch (c) {
 	case 1:
 		login();
@@ -57,6 +67,9 @@ int main() {
 		break;
 	case 7:
 		setAdmin();
+		break;
+	case 8:
+		resetPass();
 		break;
 	default:
 		system("cls");
@@ -105,6 +118,29 @@ void registeration() {
 	//TODO
 	//if there exists the username already on the file,
 	//then do not make the account, navigate hte user to main or ask to enter a different username
+	std::string sId, spass;
+	std::ifstream f2("records.txt");
+	while (f2 >> sId >> spass) {
+		//std::cout << sId<< ": " << spass << std::endl;
+		int choice;
+		if (sId == ruserId) {
+			std::cout << "Username already exists. Press 1 to login or Press 2 to enter a new username or Press 3 to go back to the main menu" << std::endl;
+			std::cin >> choice;
+			switch (choice) {
+			case 1:
+				login();
+			case 2:
+				registeration();
+			case 3:
+				main();
+			default:
+				std::cout << "\t\t\t Invalid selection, going back to the main page." << std::endl;
+				break;
+			}
+
+		}
+	}
+
 	bool correctPassword = 0;
 	std::cout << "Please enter your new password (between 6-15 numbers/characters): ";
 	std::cin >> rpassword;
@@ -134,7 +170,10 @@ void registeration() {
 
 void forgotPass() {
 	int option;
-	system("cls");
+	if (loggedOn == 1) {
+		std::cout << "You are already logged on! Select the reset password option instead!" << std::endl;
+		main();
+	}
 	std::cout << "\t\t\t You forgot your password? shame on you" << std::endl;
 	std::cout << "Press 1 to search your id by username" << std::endl;
 	std::cout << "Press 2 to go back to the main menu" << std::endl;
@@ -250,4 +289,9 @@ int encrypt(int p_letter) {
 
 int decrypt(int p_letter) {
 	return p_letter - 3;
+}
+
+void resetPass() {
+	std::cout << "reset pass" << std::endl;
+	main();
 }
