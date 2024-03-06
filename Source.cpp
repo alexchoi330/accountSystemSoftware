@@ -61,6 +61,7 @@ int main() {
 	case 5:
 		std::cout << "Thank you, come again!" << std::endl;
 		exit(0);
+		//TODO: tell the user to logout before exiting, if logged in
 		break;
 	case 6:
 		viewAccounts();
