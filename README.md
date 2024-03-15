@@ -18,3 +18,6 @@ Future Add-ons:
 - remember the admin account for next time
 - be able to remove the admin account
 - make the password unviewable when makikng account
+
+- add in some kind of API or implement it
+- use vectors
