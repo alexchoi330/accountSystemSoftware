@@ -11,7 +11,7 @@ bool loggedOn = 0;
 int count = 0;
 std::string adminAccount;
 std::string currentUserLoggedIn;
-
+//make separate files for related methods
 void login();
 void registeration();
 void forgotPass();
